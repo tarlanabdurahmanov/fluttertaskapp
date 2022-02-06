@@ -19,6 +19,22 @@ class _HomeViewState extends State<HomeView> {
 
   late GoModel selectedGoes;
 
+  bottomSheet() {
+    showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
+      builder: (context) =>
+          ModalBottomSheet(go: selectedGoes, controller: _pageController),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,20 +56,8 @@ class _HomeViewState extends State<HomeView> {
     return GestureDetector(
       onTap: () async {
         selectedGoes = goes.where((element) => element.id == go.id).first;
-        _pageController = PageController(initialPage: selectedGoes.id);
-        showModalBottomSheet(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-            ),
-          ),
-          context: context,
-          isScrollControlled: true,
-          backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
-          builder: (context) =>
-              ModalBottomSheet(go: selectedGoes, controller: _pageController),
-        );
+        _pageController = PageController(initialPage: selectedGoes.id - 1);
+        bottomSheet();
       },
       child: Container(
         padding: const EdgeInsets.all(15),
