@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertaskapp/core/constants/colors.dart';
 import 'package:fluttertaskapp/core/constants/fonts.dart';
 import 'package:fluttertaskapp/core/constants/image/image_constants.dart';
 import 'package:fluttertaskapp/core/enum/string_enums.dart';
@@ -8,7 +6,6 @@ import 'package:fluttertaskapp/core/extension/context_extension.dart';
 import 'package:fluttertaskapp/data/dummy.dart';
 import 'package:fluttertaskapp/models/go_model.dart';
 import 'package:fluttertaskapp/presentation/ui/modal/modal_bottom_sheet.dart';
-import 'package:fluttertaskapp/presentation/ui/modal/modal_view.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatefulWidget {
