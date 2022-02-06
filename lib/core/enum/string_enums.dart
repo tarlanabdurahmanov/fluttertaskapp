@@ -1,14 +1,14 @@
 enum GoEnum {
-  ECONOM,
-  COMFORT,
+  econom,
+  comfort,
 }
 
 extension GoEnumString on GoEnum {
   String get rawValue {
     switch (this) {
-      case GoEnum.ECONOM:
+      case GoEnum.econom:
         return 'Econom';
-      case GoEnum.COMFORT:
+      case GoEnum.comfort:
         return 'Comfort';
       default:
         return 'Econom';

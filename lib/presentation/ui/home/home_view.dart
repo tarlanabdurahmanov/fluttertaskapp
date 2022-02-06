@@ -7,8 +7,9 @@ import 'package:fluttertaskapp/data/dummy.dart';
 import 'package:fluttertaskapp/models/go_model.dart';
 import 'package:fluttertaskapp/presentation/ui/modal/modal_bottom_sheet.dart';
 
-// ignore: must_be_immutable
 class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -46,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {
         selectedGoes = goes.where((element) => element.id == go.id).first;
         showModalBottomSheet(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
@@ -54,14 +55,14 @@ class _HomeViewState extends State<HomeView> {
           ),
           context: context,
           isScrollControlled: true,
-          backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+          backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
           builder: (context) =>
               ModalBottomSheet(go: selectedGoes, controller: _pageController),
         );
       },
       child: Container(
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           color: Colors.blue[100],
           borderRadius: BorderRadius.circular(10),
@@ -74,19 +75,19 @@ class _HomeViewState extends State<HomeView> {
             ),
             SizedBox(width: context.lowValue),
             Text(
-              go.type == 1 ? GoEnum.ECONOM.rawValue : GoEnum.COMFORT.rawValue,
+              go.type == 1 ? GoEnum.econom.rawValue : GoEnum.comfort.rawValue,
               style: normalTextStyle(),
             ),
             SizedBox(width: context.lowValue),
             Container(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.person,
                     size: 15,
                   ),
@@ -97,7 +98,7 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [

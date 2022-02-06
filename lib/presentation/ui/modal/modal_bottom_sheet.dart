@@ -9,7 +9,7 @@ import '../../../models/go_model.dart';
 class ModalBottomSheet extends StatefulWidget {
   final GoModel go;
   final PageController controller;
-  ModalBottomSheet({Key? key, required this.go, required this.controller})
+  const ModalBottomSheet({Key? key, required this.go, required this.controller})
       : super(key: key);
 
   @override
@@ -28,13 +28,12 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
 
     _currentIndex = widget.go.id;
 
-    widget.controller
-      ..addListener(() {
-        setState(() {
-          _index = widget.controller.page!.toInt();
-          currentGo = goes.where((element) => element.id == _index + 1).first;
-        });
+    widget.controller.addListener(() {
+      setState(() {
+        _index = widget.controller.page!.toInt();
+        currentGo = goes.where((element) => element.id == _index + 1).first;
       });
+    });
     super.initState();
   }
 
@@ -80,7 +79,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
           for (var i = 1; i <= goes.length; i++)
             Flexible(
               child: Container(
-                margin: EdgeInsets.only(right: 5),
+                margin: const EdgeInsets.only(right: 5),
                 decoration: BoxDecoration(
                   color: _currentIndex == i ? Colors.white : greyColor,
                   borderRadius: BorderRadius.circular(2),

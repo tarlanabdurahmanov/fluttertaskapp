@@ -39,7 +39,7 @@ class ModalAboutRideSection extends StatelessWidget {
             subTitle: go.goInfoModel.timeFare.toString(),
             thirdTitle: "/min",
           ),
-          SizedBox(height: 7),
+          const SizedBox(height: 7),
           _rowText(
             title: "Paid waiting",
             subTitle: go.goInfoModel.paidWaiting.toString(),
@@ -48,7 +48,7 @@ class ModalAboutRideSection extends StatelessWidget {
             priceFontSize: 17,
             color: Colors.black,
           ),
-          SizedBox(height: 7),
+          const SizedBox(height: 7),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -58,8 +58,8 @@ class ModalAboutRideSection extends StatelessWidget {
                     "Seats",
                     style: normalTextStyle(),
                   ),
-                  SizedBox(width: 5),
-                  Icon(
+                  const SizedBox(width: 5),
+                  const Icon(
                     Icons.person,
                     size: 16,
                   ),

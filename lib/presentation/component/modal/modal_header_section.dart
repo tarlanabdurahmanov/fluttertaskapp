@@ -12,7 +12,7 @@ class ModalHeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16),
           bottomRight: Radius.circular(16),

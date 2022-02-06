@@ -18,7 +18,7 @@ class ModalView extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: _modalAppBar(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: SingleChildScrollView(
@@ -42,10 +42,10 @@ class ModalView extends StatelessWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       toolbarHeight: 70,
-      shape: RoundedRectangleBorder(
-        borderRadius: new BorderRadius.only(
-          topLeft: const Radius.circular(25.0),
-          topRight: const Radius.circular(25.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25.0),
+          topRight: Radius.circular(25.0),
         ),
       ),
       centerTitle: false,
@@ -55,7 +55,7 @@ class ModalView extends StatelessWidget {
 
   Container _aboutSection(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
@@ -70,7 +70,7 @@ class ModalView extends StatelessWidget {
             child: Text("About ride", style: normalTextStyle(fontSize: 20)),
           ),
           SizedBox(height: context.lowValue),
-          ModalAboutScrollList(),
+          const ModalAboutScrollList(),
           SizedBox(height: context.lowValue),
           ModalAboutRideSection(go: go),
         ],

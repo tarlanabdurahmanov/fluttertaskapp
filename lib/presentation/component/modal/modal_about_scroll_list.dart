@@ -11,8 +11,8 @@ class ModalAboutScrollList extends StatelessWidget {
     return SizedBox(
       height: 150,
       child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        physics: BouncingScrollPhysics(),
+        padding:const EdgeInsets.symmetric(horizontal: 20),
+        physics:const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: rides.length,
         itemBuilder: (BuildContext context, int index) {
@@ -24,11 +24,11 @@ class ModalAboutScrollList extends StatelessWidget {
 
   Container _item({required RideModel ride}) {
     return Container(
-      margin: EdgeInsets.only(right: 8),
+      margin:const EdgeInsets.only(right: 8),
       width: 185,
       decoration: BoxDecoration(
         color: ride.color,
-        borderRadius: BorderRadius.all(Radius.circular(14)),
+        borderRadius:const BorderRadius.all(Radius.circular(14)),
       ),
       child: Stack(
         children: [
@@ -42,7 +42,7 @@ class ModalAboutScrollList extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+            padding:const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -51,7 +51,7 @@ class ModalAboutScrollList extends StatelessWidget {
                   height: 32,
                   width: 32,
                 ),
-                SizedBox(height: 7),
+               const SizedBox(height: 7),
                 Text(
                   ride.title,
                   style: normalTextStyle(
@@ -63,7 +63,7 @@ class ModalAboutScrollList extends StatelessWidget {
                 Text(
                   ride.subTitle,
                   style: lowTextStyle(
-                    color: Color(0x80fdfeff),
+                    color:const Color(0x80fdfeff),
                     fontWeight: FontWeight.w500,
                   ),
                 )

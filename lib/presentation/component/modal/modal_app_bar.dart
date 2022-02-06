@@ -16,15 +16,15 @@ class ModalAppBarTitle extends StatelessWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       toolbarHeight: 70,
-      shape: RoundedRectangleBorder(
-        borderRadius: new BorderRadius.only(
-          topLeft: const Radius.circular(25.0),
-          topRight: const Radius.circular(25.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius:  BorderRadius.only(
+          topLeft: Radius.circular(25.0),
+          topRight: Radius.circular(25.0),
         ),
       ),
       centerTitle: false,
       title: Padding(
-        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -35,13 +35,13 @@ class ModalAppBarTitle extends StatelessWidget {
               child: Container(
                 width: 50,
                 height: 4,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(2)),
-                  color: const Color(0xffe5e5e5),
+                  color: Color(0xffe5e5e5),
                 ),
               ),
             ),
-            SizedBox(height: 7),
+            const SizedBox(height: 7),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -50,8 +50,8 @@ class ModalAppBarTitle extends StatelessWidget {
                   children: [
                     Text(
                       go.type == 1
-                          ? GoEnum.ECONOM.rawValue
-                          : GoEnum.COMFORT.rawValue,
+                          ? GoEnum.econom.rawValue
+                          : GoEnum.comfort.rawValue,
                       style: normalTextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -67,8 +67,8 @@ class ModalAppBarTitle extends StatelessWidget {
                               color: orangeColor,
                             ),
                           ),
-                          SizedBox(width: 3),
-                          Icon(
+                          const SizedBox(width: 3),
+                          const Icon(
                             Icons.info_outline,
                             size: 14,
                             color: greyColor,
@@ -84,7 +84,7 @@ class ModalAppBarTitle extends StatelessWidget {
                         ImageConstants.instance.lightning,
                         color: orangeColor,
                       ),
-                    if (go.goInfoModel.type == 1) SizedBox(width: 7),
+                    if (go.goInfoModel.type == 1) const SizedBox(width: 7),
                     Text.rich(
                       TextSpan(
                         children: [
