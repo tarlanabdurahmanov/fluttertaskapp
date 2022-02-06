@@ -24,12 +24,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    _pageController
-      ..addListener(() {
-        if (_pageController.page!.toInt().runtimeType == int) {
-          Navigator.pop(context);
-        }
-      });
     super.initState();
   }
 
@@ -55,6 +49,12 @@ class _HomeViewState extends State<HomeView> {
       onTap: () {
         selectedGoes = goes.where((element) => element.id == go.id).first;
         showModalBottomSheet(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+          ),
           context: context,
           isScrollControlled: true,
           backgroundColor: Color.fromRGBO(0, 0, 0, 0),

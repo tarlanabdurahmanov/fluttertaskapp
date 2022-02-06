@@ -45,43 +45,50 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            height: 20,
-            padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (var i = 1; i <= goes.length; i++)
-                  Flexible(
-                    child: Container(
-                      margin: EdgeInsets.only(right: 5),
-                      decoration: BoxDecoration(
-                        color: _currentIndex == i ? Colors.white : greyColor,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                      height: 3,
-                      width:
-                          ((context.width - context.normalValue) / goes.length),
-                    ),
-                  ),
-              ],
+          _headerLine(context),
+          _body(context),
+        ],
+      ),
+    );
+  }
+
+  SizedBox _body(BuildContext context) {
+    return SizedBox(
+      height: (context.height * 0.9) - 20,
+      child: PageView.builder(
+        onPageChanged: (value) {
+          setState(() {
+            _currentIndex = value + 1;
+          });
+        },
+        controller: widget.controller,
+        itemCount: goes.length,
+        itemBuilder: ((context, index) {
+          return ModalView(go: currentGo);
+        }),
+      ),
+    );
+  }
+
+  Container _headerLine(BuildContext context) {
+    return Container(
+      height: 20,
+      padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (var i = 1; i <= goes.length; i++)
+            Flexible(
+              child: Container(
+                margin: EdgeInsets.only(right: 5),
+                decoration: BoxDecoration(
+                  color: _currentIndex == i ? Colors.white : greyColor,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+                height: 3,
+                width: ((context.width - context.normalValue) / goes.length),
+              ),
             ),
-          ),
-          SizedBox(
-            height: (context.height * 0.9) - 20,
-            child: PageView.builder(
-              onPageChanged: (value) {
-                setState(() {
-                  _currentIndex = value + 1;
-                });
-              },
-              controller: widget.controller,
-              itemCount: goes.length,
-              itemBuilder: ((context, index) {
-                return ModalView(go: currentGo);
-              }),
-            ),
-          ),
         ],
       ),
     );

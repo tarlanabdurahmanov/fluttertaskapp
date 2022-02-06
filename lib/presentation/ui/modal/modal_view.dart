@@ -15,325 +15,338 @@ class ModalView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: NestedScrollView(
-          headerSliverBuilder: (context, index) {
-            return [
-              SliverAppBar(
-                expandedHeight: 10,
-                floating: false,
-                pinned: true,
-                toolbarHeight: 90,
-                automaticallyImplyLeading: false,
-                elevation: 2,
-                backgroundColor: Colors.white,
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 4,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(2)),
-                              color: const Color(0xffe5e5e5),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 7),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  go.type == 1
-                                      ? GoEnum.ECONOM.rawValue
-                                      : GoEnum.COMFORT.rawValue,
-                                  style: normalTextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                if (go.goInfoModel.type == 1)
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "High Demand",
-                                        style: normalTextStyle(
-                                          fontSize: 11,
-                                          color: orangeColor,
-                                        ),
-                                      ),
-                                      SizedBox(width: 3),
-                                      Icon(
-                                        Icons.info_outline,
-                                        size: 14,
-                                        color: greyColor,
-                                      ),
-                                    ],
-                                  )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                if (go.goInfoModel.type == 1)
-                                  Image.asset(
-                                    ImageConstants.instance.lightning,
-                                    color: orangeColor,
-                                  ),
-                                if (go.goInfoModel.type == 1)
-                                  SizedBox(width: 7),
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: "1.99",
-                                        style: normalTextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 24,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: '₼',
-                                        style: normalTextStyle(
-                                          fontFamily: "",
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 27,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+      backgroundColor: Colors.transparent,
+      appBar: _modalHeaderBar(context),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _headerSection(context),
+              SizedBox(height: context.lowValue),
+              _aboutSection(context),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: _buttonSection(),
+    );
+  }
+
+  Container _headerSection(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(16),
+          bottomRight: Radius.circular(16),
+        ),
+        color: Colors.white,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(go.goInfoModel.title, style: normalTextStyle()),
+                // Description
+                Text(go.goInfoModel.subTitle,
+                    style: lowTextStyle(color: greyColor)),
+                Image.asset(ImageConstants.instance.carImage,
+                    height: context.height * 0.22),
+                SizedBox(height: context.lowValue),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container _aboutSection(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+        color: Colors.white,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _aboutRideTitle(),
+          SizedBox(height: context.lowValue),
+          _scrollListView(),
+          SizedBox(height: context.lowValue),
+          _aboutRideTexts(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buttonSection() {
+    return Container(
+      color: Colors.white,
+      child: Container(
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(25.0),
+            topRight: const Radius.circular(25.0),
+          ),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0x05000000),
+                offset: Offset(-2, -2),
+                blurRadius: 6,
+                spreadRadius: 0),
+            BoxShadow(
+                color: const Color(0x08000000),
+                offset: Offset(-2, -2),
+                blurRadius: 4,
+                spreadRadius: 0),
+            BoxShadow(
+                color: const Color(0x08000000),
+                offset: Offset(-2, -2),
+                blurRadius: 2,
+                spreadRadius: 0)
+          ],
+          color: Colors.white,
+        ),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: go.goInfoModel.type != 1 ? blueColor : orangeColor,
+            padding: EdgeInsets.all(18),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(),
+              Text(
+                "Confirm Econom",
+                style: normalTextStyle(fontSize: 17, color: Colors.white),
+              ),
+              Image.asset(
+                ImageConstants.instance.calendar,
+                height: 24,
+                width: 24,
+              ),
+            ],
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+
+  AppBar _modalHeaderBar(BuildContext context) {
+    return AppBar(
+      elevation: 2,
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white,
+      toolbarHeight: 70,
+      shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.only(
+          topLeft: const Radius.circular(25.0),
+          topRight: const Radius.circular(25.0),
+        ),
+      ),
+      centerTitle: false,
+      title: Padding(
+        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: 50,
+                height: 4,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  color: const Color(0xffe5e5e5),
                 ),
               ),
-            ];
-          },
-          body: Container(
-            decoration: new BoxDecoration(
-              color: Color(0xfff2f2f4),
-              borderRadius: new BorderRadius.only(
-                topLeft: const Radius.circular(25.0),
-                topRight: const Radius.circular(25.0),
-              ),
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(16),
-                        bottomRight: Radius.circular(16),
+            SizedBox(height: 7),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      go.type == 1
+                          ? GoEnum.ECONOM.rawValue
+                          : GoEnum.COMFORT.rawValue,
+                      style: normalTextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
-                      color: Colors.white,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(go.goInfoModel.title,
-                                  style: normalTextStyle()),
-                              // Description
-                              Text(go.goInfoModel.subTitle,
-                                  style: lowTextStyle(color: greyColor)),
-                              Image.asset(ImageConstants.instance.carImage,
-                                  height: context.height * 0.22),
-                              SizedBox(height: context.lowValue),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: context.lowValue),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16),
-                        topRight: Radius.circular(16),
-                      ),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, top: 20),
-                          child: Text("About ride",
-                              style: normalTextStyle(fontSize: 20)),
-                        ),
-                        SizedBox(height: context.lowValue),
-                        SizedBox(
-                          height: 150,
-                          child: ListView.builder(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            physics: BouncingScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            itemCount: rides.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return _item(ride: rides[index]);
-                            },
-                          ),
-                        ),
-                        SizedBox(height: context.lowValue),
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              _rowText(
-                                title: "Fare",
-                                subTitle: go.price.toString(),
-                                color: Colors.black,
-                                priceFontSize: 17,
-                                fontSize: 15,
-                              ),
-                              _rowText(
-                                title: "Minimum fare",
-                                subTitle: go.goInfoModel.minimumFare.toString(),
-                              ),
-                              _rowText(
-                                title: "Base fare",
-                                subTitle: go.goInfoModel.baseFare.toString(),
-                              ),
-                              _rowText(
-                                title: "Distance",
-                                subTitle: go.goInfoModel.distance.toString(),
-                                thirdTitle: "/km",
-                              ),
-                              _rowText(
-                                title: "Time fare",
-                                subTitle: go.goInfoModel.timeFare.toString(),
-                                thirdTitle: "/min",
-                              ),
-                              SizedBox(height: 7),
-                              _rowText(
-                                title: "Paid waiting",
-                                subTitle: go.goInfoModel.paidWaiting.toString(),
-                                thirdTitle: "/min",
-                                fontSize: 15,
-                                priceFontSize: 17,
-                                color: Colors.black,
-                              ),
-                              SizedBox(height: 7),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Seats",
-                                        style: normalTextStyle(),
-                                      ),
-                                      SizedBox(width: 5),
-                                      Icon(
-                                        Icons.person,
-                                        size: 16,
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    "4",
-                                    style: normalTextStyle(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: context.lowValue),
-                              Text(
-                                "The price may vary in the case of: changes to your trip, stops added, tolls and excess waiting time. If the trip changes, the price will be based on rates provided.",
-                                style: normalTextStyle(
-                                  fontSize: 12,
-                                  color: greyColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      borderRadius: new BorderRadius.only(
-                        topLeft: const Radius.circular(25.0),
-                        topRight: const Radius.circular(25.0),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                            color: const Color(0x05000000),
-                            offset: Offset(-2, -2),
-                            blurRadius: 6,
-                            spreadRadius: 0),
-                        BoxShadow(
-                            color: const Color(0x08000000),
-                            offset: Offset(-2, -2),
-                            blurRadius: 4,
-                            spreadRadius: 0),
-                        BoxShadow(
-                            color: const Color(0x08000000),
-                            offset: Offset(-2, -2),
-                            blurRadius: 2,
-                            spreadRadius: 0)
-                      ],
-                      color: Colors.white,
-                    ),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary:
-                            go.goInfoModel.type != 1 ? blueColor : orangeColor,
-                        padding: EdgeInsets.all(18),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    if (go.goInfoModel.type == 1)
+                      Row(
                         children: [
-                          SizedBox(),
                           Text(
-                            "Confirm Econom",
+                            "High Demand",
                             style: normalTextStyle(
-                                fontSize: 17, color: Colors.white),
+                              fontSize: 11,
+                              color: orangeColor,
+                            ),
                           ),
-                          Image.asset(
-                            ImageConstants.instance.calendar,
-                            height: 24,
-                            width: 24,
+                          SizedBox(width: 3),
+                          Icon(
+                            Icons.info_outline,
+                            size: 14,
+                            color: greyColor,
+                          ),
+                        ],
+                      )
+                  ],
+                ),
+                Row(
+                  children: [
+                    if (go.goInfoModel.type == 1)
+                      Image.asset(
+                        ImageConstants.instance.lightning,
+                        color: orangeColor,
+                      ),
+                    if (go.goInfoModel.type == 1) SizedBox(width: 7),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "1.99",
+                            style: normalTextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '₼',
+                            style: normalTextStyle(
+                              fontFamily: "",
+                              fontWeight: FontWeight.normal,
+                              fontSize: 27,
+                            ),
                           ),
                         ],
                       ),
-                      onPressed: () {},
                     ),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding _aboutRideTitle() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, top: 20),
+      child: Text("About ride", style: normalTextStyle(fontSize: 20)),
+    );
+  }
+
+  Padding _aboutRideTexts(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          _rowText(
+            title: "Fare",
+            subTitle: go.price.toString(),
+            color: Colors.black,
+            priceFontSize: 17,
+            fontSize: 15,
+          ),
+          _rowText(
+            title: "Minimum fare",
+            subTitle: go.goInfoModel.minimumFare.toString(),
+          ),
+          _rowText(
+            title: "Base fare",
+            subTitle: go.goInfoModel.baseFare.toString(),
+          ),
+          _rowText(
+            title: "Distance",
+            subTitle: go.goInfoModel.distance.toString(),
+            thirdTitle: "/km",
+          ),
+          _rowText(
+            title: "Time fare",
+            subTitle: go.goInfoModel.timeFare.toString(),
+            thirdTitle: "/min",
+          ),
+          SizedBox(height: 7),
+          _rowText(
+            title: "Paid waiting",
+            subTitle: go.goInfoModel.paidWaiting.toString(),
+            thirdTitle: "/min",
+            fontSize: 15,
+            priceFontSize: 17,
+            color: Colors.black,
+          ),
+          SizedBox(height: 7),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Seats",
+                    style: normalTextStyle(),
+                  ),
+                  SizedBox(width: 5),
+                  Icon(
+                    Icons.person,
+                    size: 16,
                   ),
                 ],
               ),
+              Text(
+                "4",
+                style: normalTextStyle(),
+              ),
+            ],
+          ),
+          SizedBox(height: context.lowValue),
+          Text(
+            "The price may vary in the case of: changes to your trip, stops added, tolls and excess waiting time. If the trip changes, the price will be based on rates provided.",
+            style: normalTextStyle(
+              fontSize: 12,
+              color: greyColor,
             ),
           ),
-        ),
+        ],
+      ),
+    );
+  }
+
+  SizedBox _scrollListView() {
+    return SizedBox(
+      height: 150,
+      child: ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: rides.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _item(ride: rides[index]);
+        },
       ),
     );
   }
