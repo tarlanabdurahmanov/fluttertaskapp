@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertaskapp/core/constants/fonts.dart';
-import 'package:fluttertaskapp/core/constants/image/image_constants.dart';
-import 'package:fluttertaskapp/core/enum/string_enums.dart';
-import 'package:fluttertaskapp/core/extension/context_extension.dart';
-import 'package:fluttertaskapp/data/dummy.dart';
-import 'package:fluttertaskapp/models/go_model.dart';
-import 'package:fluttertaskapp/presentation/ui/modal/modal_bottom_sheet.dart';
+import '../../../core/constants/fonts.dart';
+import '../../../core/constants/image/image_constants.dart';
+import '../../../core/enum/string_enums.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../data/dummy.dart';
+import '../../../models/go_model.dart';
+import '../modal/modal_bottom_sheet.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -63,8 +63,8 @@ class _HomeViewState extends State<HomeView> {
         child: Row(
           children: [
             Image.asset(
-              ImageConstants.instance.carImage,
-              width: 60,
+              ImageConstants.instance.carImageTransparent,
+              width: 50,
             ),
             SizedBox(width: context.lowValue),
             Text(

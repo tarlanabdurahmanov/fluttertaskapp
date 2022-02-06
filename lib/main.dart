@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertaskapp/core/constants/strings.dart';
-import 'package:fluttertaskapp/presentation/ui/home/home_view.dart';
+import 'core/constants/strings.dart';
+import 'presentation/ui/home/home_view.dart';
 
 void main() => runApp(const MyApp());
 

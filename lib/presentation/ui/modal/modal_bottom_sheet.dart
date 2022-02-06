@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertaskapp/core/constants/colors.dart';
-import 'package:fluttertaskapp/core/extension/context_extension.dart';
-import 'package:fluttertaskapp/presentation/ui/modal/modal_view.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/extension/context_extension.dart';
+import 'modal_view.dart';
 
 import '../../../data/dummy.dart';
 import '../../../models/go_model.dart';

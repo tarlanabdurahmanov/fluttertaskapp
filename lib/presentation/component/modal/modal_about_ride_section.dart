@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertaskapp/core/constants/colors.dart';
-import 'package:fluttertaskapp/core/constants/fonts.dart';
-import 'package:fluttertaskapp/core/extension/context_extension.dart';
-import 'package:fluttertaskapp/models/go_model.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/constants/fonts.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../models/go_model.dart';
 
 class ModalAboutRideSection extends StatelessWidget {
   final GoModel go;

@@ -1,4 +1,4 @@
-import 'package:fluttertaskapp/models/go_info_model.dart';
+import 'go_info_model.dart';
 
 class GoModel {
   int id;

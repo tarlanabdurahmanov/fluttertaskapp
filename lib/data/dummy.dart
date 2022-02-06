@@ -1,8 +1,8 @@
-import 'package:fluttertaskapp/core/constants/colors.dart';
-import 'package:fluttertaskapp/core/constants/image/image_constants.dart';
-import 'package:fluttertaskapp/models/go_info_model.dart';
-import 'package:fluttertaskapp/models/go_model.dart';
-import 'package:fluttertaskapp/models/ride_model.dart';
+import '../core/constants/colors.dart';
+import '../core/constants/image/image_constants.dart';
+import '../models/go_info_model.dart';
+import '../models/go_model.dart';
+import '../models/ride_model.dart';
 
 final goes = [
   GoModel(

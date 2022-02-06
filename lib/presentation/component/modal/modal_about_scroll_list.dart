@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertaskapp/core/constants/fonts.dart';
-import 'package:fluttertaskapp/data/dummy.dart';
-import 'package:fluttertaskapp/models/ride_model.dart';
+import '../../../core/constants/fonts.dart';
+import '../../../data/dummy.dart';
+import '../../../models/ride_model.dart';
 
 class ModalAboutScrollList extends StatelessWidget {
   const ModalAboutScrollList({Key? key}) : super(key: key);

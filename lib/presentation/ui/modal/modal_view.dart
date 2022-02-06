@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertaskapp/core/constants/fonts.dart';
-import 'package:fluttertaskapp/core/extension/context_extension.dart';
-import 'package:fluttertaskapp/models/go_model.dart';
-import 'package:fluttertaskapp/presentation/component/modal/modal_about_ride_section.dart';
-import 'package:fluttertaskapp/presentation/component/modal/modal_about_scroll_list.dart';
-import 'package:fluttertaskapp/presentation/component/modal/modal_app_bar.dart';
-import 'package:fluttertaskapp/presentation/component/modal/modal_button.dart';
-import 'package:fluttertaskapp/presentation/component/modal/modal_header_section.dart';
+import '../../../core/constants/fonts.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../models/go_model.dart';
+import '../../component/modal/modal_about_ride_section.dart';
+import '../../component/modal/modal_about_scroll_list.dart';
+import '../../component/modal/modal_app_bar.dart';
+import '../../component/modal/modal_button.dart';
+import '../../component/modal/modal_header_section.dart';
 
 class ModalView extends StatelessWidget {
   const ModalView({Key? key, required this.go}) : super(key: key);
