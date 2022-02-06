@@ -18,23 +18,31 @@ class ModalBottomSheet extends StatefulWidget {
 
 class _ModalBottomSheetState extends State<ModalBottomSheet> {
   int _currentIndex = 1;
-  int _index = 0;
   bool isLoading = false;
   late GoModel currentGo;
 
   @override
   void initState() {
     currentGo = widget.go;
-
     _currentIndex = widget.go.id;
-
     widget.controller.addListener(() {
       setState(() {
-        _index = widget.controller.page!.toInt();
-        currentGo = goes.where((element) => element.id == _index + 1).first;
+        isLoading = true;
+        currentGo = goes
+            .where(
+                (element) => element.id == widget.controller.page!.toInt() + 1)
+            .first;
+        delayed();
       });
     });
     super.initState();
+  }
+
+  delayed() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -63,7 +71,9 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
         controller: widget.controller,
         itemCount: goes.length,
         itemBuilder: ((context, index) {
-          return ModalView(go: currentGo);
+          return !isLoading
+              ? ModalView(go: currentGo)
+              : const Center(child: CircularProgressIndicator());
         }),
       ),
     );

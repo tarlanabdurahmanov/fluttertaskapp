@@ -18,13 +18,6 @@ class _HomeViewState extends State<HomeView> {
   final PageController _pageController = PageController();
   late GoModel selectedGoes;
 
-  var currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
