@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertaskapp/core/constants/colors.dart';
 import 'package:fluttertaskapp/core/extension/context_extension.dart';
@@ -73,7 +76,13 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
         itemBuilder: ((context, index) {
           return !isLoading
               ? ModalView(go: currentGo)
-              : const Center(child: CircularProgressIndicator());
+              : Center(
+                  child: Platform.isAndroid
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const CupertinoActivityIndicator(
+                          color: Colors.white,
+                        ),
+                );
         }),
       ),
     );
