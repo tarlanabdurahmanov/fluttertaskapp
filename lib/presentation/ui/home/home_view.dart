@@ -15,7 +15,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final PageController _pageController = PageController();
+  PageController _pageController = PageController(initialPage: 1);
+
   late GoModel selectedGoes;
 
   @override
@@ -37,8 +38,9 @@ class _HomeViewState extends State<HomeView> {
 
   GestureDetector _listItem(GoModel go, BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         selectedGoes = goes.where((element) => element.id == go.id).first;
+        _pageController = PageController(initialPage: selectedGoes.id);
         showModalBottomSheet(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
